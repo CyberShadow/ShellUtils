@@ -1,0 +1,12 @@
+#!/bin/bash
+DATE=`date -Idate`
+DIR=$DATE
+LETTERS=abcdefghijklmnopqrstuvwxyz
+while [ -e $DIR ];
+do
+	LETTERS=${LETTERS:1}
+	DIR=$DATE${LETTERS:0:1}
+done
+echo Created $DIR
+mkdir $DIR
+cd $DIR

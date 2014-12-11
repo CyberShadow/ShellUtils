@@ -1,0 +1,2 @@
+#!/bin/bash
+ionice -c3 nice -n 20 $*

@@ -1,0 +1,21 @@
+#!/bin/bash
+if   [[ $# == 0 ]]; then
+	echo Usage: t15-d2-runcheck PATH PROGRAM [ZAP-PIDFILE [ARGS...]]
+elif [[ $3 == '' ]]; then
+	TEST=$(pgrep -x ${2:0:15} > /dev/null)$?
+else
+	TEST=$(pgrep -x ${2:0:15} | grep -vf $3 > /dev/null)$?
+fi
+
+cd $1 2>&1
+if [[ $TEST == 1 ]] ; then
+ulimit -u 64
+#ulimit -n 4096
+#ulimit -v 524288
+#ulimit -v 786432
+ulimit -v 1048576
+PROGRAM=$2
+shift
+shift
+nice -n 5 /usr/local/bin/t15-backtrace-d2.sh ./$PROGRAM -q $@
+fi
