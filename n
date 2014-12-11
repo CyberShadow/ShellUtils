@@ -7,6 +7,6 @@ do
 	LETTERS=${LETTERS:1}
 	DIR=$DATE${LETTERS:0:1}
 done
-echo Created $DIR
+echo $DIR
 mkdir $DIR
 cd $DIR
