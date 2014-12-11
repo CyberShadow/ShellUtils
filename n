@@ -1,4 +1,6 @@
 #!/bin/bash
+# Create directory by current date (prefixing a letter as needed)
+set -e
 DATE=`date -Idate`
 DIR=$DATE
 LETTERS=abcdefghijklmnopqrstuvwxyz
@@ -7,6 +9,6 @@ do
 	LETTERS=${LETTERS:1}
 	DIR=$DATE${LETTERS:0:1}
 done
-echo $DIR
 mkdir $DIR
+echo $DIR
 cd $DIR
