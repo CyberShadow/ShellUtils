@@ -9,10 +9,11 @@ break rt.deh_win64_posix.terminate()
 commands
 silent
 frame 1
-call (void)fprintf(stderr, "e: %.*s\n", *(**(size_t***)h+4), *(**(char****)h+5))
-call (void)fprintf(stderr, "file: %.*s\n", *((size_t*)h+4), *((char**)h+5))
-call (void)fprintf(stderr, "line: %zd\n", *((size_t*)h+6))
-call (void)fprintf(stderr, "msg: %.*s\n", *((size_t*)h+2), *((char**)h+3))
+call (void)fprintf(stdout, "e: %.*s\n", *(**(size_t***)h+4), *(**(char****)h+5))
+call (void)fprintf(stdout, "file: %.*s\n", *((size_t*)h+4), *((char**)h+5))
+call (void)fprintf(stdout, "line: %zd\n", *((size_t*)h+6))
+call (void)fprintf(stdout, "msg: %.*s\n", *((size_t*)h+2), *((char**)h+3))
+call (void)fflush(stdout)
 continue
 end
 set rt_trapExceptions=0
