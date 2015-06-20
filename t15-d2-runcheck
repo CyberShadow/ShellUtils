@@ -13,7 +13,7 @@ ulimit -u 64
 #ulimit -n 4096
 #ulimit -v 524288
 #ulimit -v 786432
-ulimit -v 1048576
+ulimit -v ${T15_ULIMIT_VRAM-1048576}
 PROGRAM=$2
 shift
 shift
