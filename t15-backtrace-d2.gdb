@@ -1,3 +1,4 @@
+set args -s 2>&1
 handle SIG33 pass nostop noprint
 handle SIGTERM pass nostop noprint
 handle SIGINT pass nostop noprint
