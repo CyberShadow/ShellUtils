@@ -17,6 +17,6 @@ ulimit -v ${T15_ULIMIT_VRAM-1048576}
 PROGRAM=$2
 shift
 shift
-( /sbin/paxctl -v $PROGRAM > /dev/null 2>&1 ) || /sbin/paxctl -Cm $PROGRAM
+( /sbin/paxctl -v $PROGRAM > /dev/null 2>&1 ) || /sbin/paxctl -Cmp $PROGRAM
 nice -n 5 /usr/local/bin/t15-backtrace-d2.sh ./$PROGRAM -q $@
 fi
