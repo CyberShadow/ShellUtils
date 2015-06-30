@@ -1,4 +1,3 @@
-set args -s 2>&1
 handle SIG33 pass nostop noprint
 handle SIGTERM pass nostop noprint
 handle SIGINT pass nostop noprint
@@ -17,6 +16,7 @@ frame 1
 #call (void)fprintf(stdout, "msg: %.*s\n", *((size_t*)h+2), *((char**)h+3))
 #call (void)fprintf(stdout, "=========================================\n")
 #call (void)fflush(stdout)
+call (void)dup2(1, 2)
 call _D2rt6dmain214printThrowableFC6object9ThrowableZv(h)
 call (void)fflush(stderr)
 continue
