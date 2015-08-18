@@ -3,6 +3,7 @@ handle SIGTERM pass nostop noprint
 handle SIGINT pass nostop noprint
 handle SIGUSR1 pass nostop noprint
 handle SIGUSR2 pass nostop noprint
+handle SIGPIPE pass nostop noprint
 set pagination 0
 start
 break rt.deh_win64_posix.terminate()
