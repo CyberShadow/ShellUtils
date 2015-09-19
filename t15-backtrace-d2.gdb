@@ -18,7 +18,8 @@ frame 1
 #call (void)fprintf(stdout, "=========================================\n")
 #call (void)fflush(stdout)
 call (void)dup2(1, 2)
-call _D2rt6dmain214printThrowableFC6object9ThrowableZv(h)
+#call _D2rt6dmain214printThrowableFC6object9ThrowableZv(h)
+call _d_print_throwable(h)
 call (void)fflush(stderr)
 continue
 end
