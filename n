@@ -1,6 +1,6 @@
 #!/bin/bash
 # Create directory by current date (prefixing a letter as needed)
-set -e
+set -eu
 DATE=`date -Idate`
 DIR=$DATE
 LETTERS=abcdefghijklmnopqrstuvwxyz
