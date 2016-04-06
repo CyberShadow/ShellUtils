@@ -31,7 +31,7 @@ GDB=gdb
 
 stty -tostop
 ${GDB} -batch \
-    --command /usr/local/bin/t15-backtrace-d2.gdb \
+    --command "$(dirname "$0")"/t15-backtrace-d2.gdb \
     --args ${*} \
     < /dev/null \
     | /usr/local/bin/ddemangle
