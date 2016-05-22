@@ -1,5 +1,5 @@
 #!/bin/sh
 set -eu
-aria2c --continue=true --max-connection-per-server=16 --split=16 --min-split-size=1M "$@"
+aria2c --continue=true --max-connection-per-server=16 --split=16 --min-split-size=1M --bt-detach-seed-only=true "$@"
 
 #--check-certificate=false
