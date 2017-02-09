@@ -5,7 +5,7 @@ if   [[ $# -lt 2 ]]
 then
 	echo 'Usage: t15-d2-runcheck PATH PROGRAM [ZAP-PIDFILE [ARGS...]]'
 	exit 1
-elif [[ $# -lt 3 ]]
+elif [[ -z "${3:+x}" ]]
 then
 	result=$(pgrep -x "${2:0:15}" > /dev/null)$?
 else
