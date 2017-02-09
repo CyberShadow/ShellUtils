@@ -15,7 +15,7 @@ log() {
 
 die() {
     usage
-    log 'error:' ${*}'.'
+    log 'error:' "${*}"'.'
     exit 1
 }
 
@@ -32,9 +32,9 @@ GDB=gdb
 stty -tostop
 ${GDB} -batch \
     --command "$(dirname "$0")"/t15-backtrace-d2.gdb \
-    --args ${*} \
+    --args "$@" \
     < /dev/null \
-    | /usr/local/bin/ddemangle
+    | dtools-ddemangle
 
 # 2>>"${LOG}"
 #    -ex 'backtrace full' \

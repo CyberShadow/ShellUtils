@@ -1,22 +1,37 @@
 #!/bin/bash
-if   [[ $# == 0 ]]; then
-	echo Usage: t15-d2-runcheck PATH PROGRAM [ZAP-PIDFILE [ARGS...]]
-elif [[ $3 == '' ]]; then
-	TEST=$(pgrep -x ${2:0:15} > /dev/null)$?
+set -eu
+
+if   [[ $# -lt 2 ]]
+then
+	echo 'Usage: t15-d2-runcheck PATH PROGRAM [ZAP-PIDFILE [ARGS...]]'
+	exit 1
+elif [[ $# -lt 3 ]]
+then
+	result=$(pgrep -x "${2:0:15}" > /dev/null)$?
 else
-	TEST=$(pgrep -x ${2:0:15} | grep -vf $3 > /dev/null)$?
+	result=$(pgrep -x "${2:0:15}" | grep -vf "$3" > /dev/null)$?
 fi
 
-cd $1 2>&1
-if [[ $TEST == 1 ]] ; then
-ulimit -u 64
-#ulimit -n 4096
-#ulimit -v 524288
-#ulimit -v 786432
-ulimit -v ${T15_ULIMIT_VRAM-1048576}
-PROGRAM=$2
-shift
-shift
-( /sbin/paxctl -v $PROGRAM > /dev/null 2>&1 ) || /sbin/paxctl -Cmp $PROGRAM
-nice -n 5 /usr/local/bin/t15-backtrace-d2.sh ./$PROGRAM -q $@
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "$1"
+
+if [[ $result == 1 ]]
+then
+	ulimit -u 64
+	#ulimit -n 4096
+	#ulimit -v 524288
+	#ulimit -v 786432
+	ulimit -v "${T15_ULIMIT_VRAM-1048576}"
+
+	program=$2
+	shift
+	shift
+
+	if [[ -x /sbin/paxctl ]]
+	then
+		( /sbin/paxctl -v "$program" > /dev/null 2>&1 ) || /sbin/paxctl -Cmp "$program"
+	fi
+
+	nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" -q "$@"
 fi

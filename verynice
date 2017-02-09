@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/bin/sh
 exec ionice -c3 nice -n 20 "$@"
