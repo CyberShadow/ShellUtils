@@ -33,5 +33,10 @@ then
 		( /sbin/paxctl -v "$program" > /dev/null 2>&1 ) || /sbin/paxctl -Cmp "$program"
 	fi
 
+	if [[ -x "${program}.pre" ]]
+	then
+		"./${program}.pre"
+	fi
+
 	nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" -q "$@"
 fi
