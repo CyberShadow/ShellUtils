@@ -34,7 +34,7 @@ ${GDB} -batch \
     --command "$(dirname "$0")"/t15-backtrace-d2.gdb \
     --args "$@" \
     < /dev/null \
-    | dtools-ddemangle
+    | /usr/local/bin/ddemangle
 
 # 2>>"${LOG}"
 #    -ex 'backtrace full' \
