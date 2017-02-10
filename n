@@ -12,6 +12,6 @@ do
 	dir=$date${letters:0:1}
 done
 
-mkdir "$DIR"
-echo "$DIR"
-cd "$DIR"
+mkdir "$dir"
+echo "$dir"
+cd "$dir"
