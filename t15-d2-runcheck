@@ -7,36 +7,33 @@ then
 	exit 1
 elif [[ -z "${3:+x}" ]]
 then
-	result=$(pgrep -x "${2:0:15}" > /dev/null)$?
+	if pgrep -x "${2:0:15}"                 > /dev/null ; then exit 0 ; fi
 else
-	result=$(pgrep -x "${2:0:15}" | grep -vf "$3" > /dev/null)$?
+	if pgrep -x "${2:0:15}" | grep -vf "$3" > /dev/null ; then exit 0 ; fi
 fi
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$1"
 
-if [[ $result == 1 ]]
+ulimit -u 64
+#ulimit -n 4096
+#ulimit -v 524288
+#ulimit -v 786432
+ulimit -v "${T15_ULIMIT_VRAM-1048576}"
+
+program=$2
+shift
+shift
+
+if [[ -x /sbin/paxctl ]]
 then
-	ulimit -u 64
-	#ulimit -n 4096
-	#ulimit -v 524288
-	#ulimit -v 786432
-	ulimit -v "${T15_ULIMIT_VRAM-1048576}"
-
-	program=$2
-	shift
-	shift
-
-	if [[ -x /sbin/paxctl ]]
-	then
-		( /sbin/paxctl -v "$program" > /dev/null 2>&1 ) || /sbin/paxctl -Cmp "$program"
-	fi
-
-	if [[ -x "${program}.pre" ]]
-	then
-		"./${program}.pre"
-	fi
-
-	nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" -q "$@"
+	( /sbin/paxctl -v "$program" > /dev/null 2>&1 ) || /sbin/paxctl -Cmp "$program"
 fi
+
+if [[ -x "${program}.pre" ]]
+then
+	"./${program}.pre"
+fi
+
+nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" -q "$@"
