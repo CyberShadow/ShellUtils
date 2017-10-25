@@ -1,0 +1,5 @@
+#!/bin/bash
+if [ $# -ne 2 ];
+then echo "Syntax: ban <IP-mask> <comment>"; exit; fi
+iptables -D INPUT -s $1 -j DROP -m comment --comment "$2" 2> /dev/null
+iptables -A INPUT -s $1 -j DROP -m comment --comment "$2"

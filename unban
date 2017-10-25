@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ $# -ne 2 ];
+then echo "Syntax: unban <IP-mask> <comment>"; exit; fi
+iptables -D INPUT -s $1 -j DROP -m comment --comment "$2"
