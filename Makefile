@@ -7,5 +7,7 @@ PROGRAMS=\
 	delink \
 	replace-with-symlink
 
+all:
+
 install:
 	cp $(PROGRAMS) /usr/local/bin/
