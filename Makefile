@@ -4,7 +4,8 @@ PROGRAMS=\
 	t15-backtrace-d2.sh \
 	t15-d2-runcheck \
 	verynice \
-	delink
+	delink \
+	replace-with-symlink
 
 install:
 	cp $(PROGRAMS) /usr/local/bin/
