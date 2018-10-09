@@ -9,7 +9,7 @@ fi
 
 tmpext=.delink-$(date +%s)
 
-for f in *
+for f in "$@"
 do
 	cp --archive --dereference "$f" "$f$tmpext"
 	rm "$f"
