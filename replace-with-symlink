@@ -2,10 +2,18 @@
 set -eu
 
 # Like mv, but leaves behind a symlink to the new location.
-# Paths should be absolute.
 
 src=$1
 dst=$2
 
 mv --verbose --no-target-directory "$src" "$dst"
-ln -s "$dst" "$src"
+
+if [[ "$dst" != /* ]]
+then
+	# If the target is a relative path, ensure that the symlink gets
+	# created correctly (with its path relative to its location, not
+	# the current directory at this script's invocation time).
+	dst=$(realpath -s --relative-to "$(dirname "$src")" "$dst")
+fi
+
+ln --verbose -s "$dst" "$src"
