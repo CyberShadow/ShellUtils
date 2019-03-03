@@ -4,5 +4,8 @@ set -eu
 # Like mv, but leaves behind a symlink to the new location.
 # Paths should be absolute.
 
-mv --verbose --no-target-directory "$1" "$2"
-ln -s "$2" "$1"
+src=$1
+dst=$2
+
+mv --verbose --no-target-directory "$src" "$dst"
+ln -s "$dst" "$src"
