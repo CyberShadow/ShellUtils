@@ -16,7 +16,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$1"
 
-ulimit -u 64
+ulimit -u 128
 #ulimit -n 4096
 #ulimit -v 524288
 #ulimit -v 786432
