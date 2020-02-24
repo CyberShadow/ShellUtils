@@ -25,6 +25,7 @@ ulimit -v "${T15_ULIMIT_VRAM-1048576}"
 program=$2
 shift
 shift
+shift
 
 if [[ -x /sbin/paxctl ]]
 then
