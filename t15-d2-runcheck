@@ -38,3 +38,8 @@ then
 fi
 
 nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" -q "$@"
+
+if [[ -x "${program}.post" ]]
+then
+	"./${program}.post"
+fi
