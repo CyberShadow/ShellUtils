@@ -16,11 +16,11 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$1"
 
-ulimit -u 128
-#ulimit -n 4096
-#ulimit -v 524288
-#ulimit -v 786432
-ulimit -v "${T15_ULIMIT_VRAM-1048576}"
+ulimit -Su 128
+#ulimit -Sn 4096
+#ulimit -Sv 524288
+#ulimit -Sv 786432
+ulimit -Sv "${T15_ULIMIT_VRAM-1048576}"
 
 program=$2
 shift
