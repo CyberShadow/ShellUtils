@@ -28,10 +28,10 @@ shift
 shift
 shift || true
 
-if [[ -x /sbin/paxctl ]]
-then
-	( /sbin/paxctl -v "$program" > /dev/null 2>&1 ) || /sbin/paxctl -Cmp "$program"
-fi
+#if [[ -x /sbin/paxctl ]]
+#then
+#	( /sbin/paxctl -v "$program" > /dev/null 2>&1 ) || /sbin/paxctl -Cmp "$program"
+#fi
 
 if [[ -x "${program}.pre" ]]
 then
