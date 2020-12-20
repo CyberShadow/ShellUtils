@@ -7,9 +7,9 @@ then
 	exit 1
 elif [[ -z "${3:+x}" ]]
 then
-	if pgrep -x "${2:0:15}"                  | grep -vFf <(pgrep -f -- --host-process) > /dev/null ; then exit 0 ; fi
+	if pgrep -x "${2:0:15}"                  | grep -vFf <(pgrep -f -- host-process) > /dev/null ; then exit 0 ; fi
 else
-	if pgrep -x "${2:0:15}" | grep -vf "$3"  | grep -vFf <(pgrep -f -- --host-process) > /dev/null ; then exit 0 ; fi
+	if pgrep -x "${2:0:15}" | grep -vf "$3"  | grep -vFf <(pgrep -f -- host-process) > /dev/null ; then exit 0 ; fi
 fi
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
