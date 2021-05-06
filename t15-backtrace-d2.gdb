@@ -41,7 +41,7 @@ call (void)fflush(stderr)
 continue
 end
 
-set rt_trapExceptions=0
+set *(int*)&rt_trapExceptions=0
 continue
 info registers
 thread apply all backtrace
