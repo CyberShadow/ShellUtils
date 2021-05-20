@@ -38,7 +38,7 @@ then
 	"./${program}.pre"
 fi
 
-nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" -q "$@"
+nice -n 5 "$script_dir/t15-backtrace-d2.sh" "./$program" "$@"
 
 if [[ -x "${program}.post" ]]
 then
