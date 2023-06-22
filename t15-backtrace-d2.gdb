@@ -15,6 +15,9 @@ run
 # 2.070 and newer:
 break abort
 
+break onOutOfMemoryError
+break onOutOfMemoryErrorNoGC
+
 commands
 silent
 echo === backtrace: ===\n
