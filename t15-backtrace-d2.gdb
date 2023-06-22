@@ -20,6 +20,9 @@ silent
 echo === backtrace: ===\n
 backtrace
 echo === end of backtrace ===\n
+echo === info: ===\n
+p _t15_getDebugInfo()
+echo === end of info ===\n
 
 call (void)dup2(1, 2)
 echo === _d_print_throwable: ===\n
