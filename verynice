@@ -1,2 +1,6 @@
 #!/bin/sh
-exec ionice -c3 nice -n 20 "$@"
+exec \
+	ionice -c3 \
+	chrt --idle 0 \
+	nice -n 20 \
+	"$@"
