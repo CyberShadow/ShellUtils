@@ -1,6 +1,13 @@
 #!/bin/bash
-if [ $# -ne 2 ];
-then echo "Syntax: ban <IP-mask> <comment>"; exit; fi
-if [[ "$1" == *:* ]] ; then iptables=ip6tables ; else iptables=iptables ; fi
+set -eEuo pipefail
+if [ $# -ne 2 ]; then echo "Syntax: ban <IP-mask> <comment>"; exit 2; fi
+if [[ "$1" == *:* ]] ; then
+	iptables=ip6tables
+	rules=/etc/iptables/rules.v4
+else
+	iptables=iptables
+	rules=/etc/iptables/rules.v6
+fi
 $iptables -D INPUT -s "$1" -j DROP -m comment --comment "$2" 2> /dev/null
 $iptables -A INPUT -s "$1" -j DROP -m comment --comment "$2"
+$iptables-save > "$rules"
