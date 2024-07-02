@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Create directory by current date (prefixing a letter as needed)
 set -eu
 
